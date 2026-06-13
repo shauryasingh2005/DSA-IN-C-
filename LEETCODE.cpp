@@ -1,5 +1,6 @@
+#include <climits>
 /*REVERSE AN INTEGER AND IT MUSTY NOT BE GREATER THAN [(2)^31 - 1] OR LESS THAN [2^-31] */
-class Solution {
+class SolutionReverse {
     public:
         int reverse(int x) {
        int ans=0;
@@ -39,7 +40,7 @@ else{cout<<"false";}
         /*OR*/
 
 
-        class Solution {
+        class SolutionPowerOfTwo {
             public:
                 bool isPowerOfTwo(int n) {
                     if(n==0)return false;
@@ -57,7 +58,7 @@ else{cout<<"false";}
 
 
 /*Given an integer number n, return the difference between the product of its digits and the sum of its digits.*/
-            class Solution {
+            class SolutionSubtractProductAndSum {
                 public:
                     int subtractProductAndSum(int n) {
                         int product = 1, sum = 0;
