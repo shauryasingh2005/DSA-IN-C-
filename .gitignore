@@ -1,0 +1,13 @@
+# Compiled binaries
+*.exe
+*.o
+*.out
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
