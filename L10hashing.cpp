@@ -1,6 +1,65 @@
+//HASHING EXPALINED IN NOTES(PRECOMPUTAITON,FETCHING)
+
+#include <iostream>
+using namespace std;
+
+int main(){
+  int arr[4];
+  for(int i=0;i<4;i++){
+    cin>>arr[i];
+}
+/*precomputation*/
+int hash[100000]={0};
+/*hashing*/
+for(int i=0;i<4;i++){
+int j=arr[i];
+hash[j]=hash[j]+1;
+}
+/*fetching*/
+for(int i=0;i<100000;i++){
+  if(hash[i]>0){
+    cout<<i<<" "<<hash[i]<<endl;
+  }
+}}
+
+
+
+
+
+//CHARACTER HASHING (ASCII VALUE,)
+//HASHING EXPALINED IN NOTES(PRECOMPUTAITON,FETCHING)
+
+#include <iostream>
+using namespace std;
+
+int main(){
+  char arr[6];
+for(int i=0;i<6;i++){
+    cin>>arr[i];
+
+}
+/*precomputation*/
+int hash[1000]={0};
+int j;
+/*hashing*/
+for(int i=0;i<6;i++){
+  j=arr[i]-'a';  
+hash[j]++;   }
+/*fetching*/
+for(int i=0;i<6;i++){
+    cout<<i<<" "<<hash[i]<<endl;}
+  
+  }
+
+
+
+
+/************************************************************************************ */
+
+
 // MAPPING
 #include <iostream>
-#include <map>/*requred for using maps*/
+#include <map>/*requred for using maps for unordered just #include<unordered_map>*/
 using namespace std;
 int main() {
   int n;
@@ -9,10 +68,12 @@ int main() {
   for (int i = 0; i < n; i++) {
     cin >> arr[i];
   }
-  map<int, int> mpp; /*declaraction ;map<number,frequency>mapname*/
+  /*precomputation*/
+  map<int, int> mpp; /*declaraction ;map<number,frequency>mapname       for unordered just wirte unordered_map<int, int> mpp;*/
   for (int i = 0; i < n; i++) {
     mpp[arr[i]]++;
   }
+  /*fetching*/
   int q;
   cin >> q;
   while (q--) {
