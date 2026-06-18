@@ -8,140 +8,112 @@ This repository serves as a dedicated space to track my journey, practice proble
 
 ## 📚 Core Algorithms & Concepts in Depth
 
-Below are detailed explanations, complexity analyses, and code walks of the sorting and searching paradigms implemented in this repository.
+Below are detailed explanations, complexity analyses, and walkthroughs of the topics covered in this repository.
 
-### 1. Divide & Conquer Paradigm
-The **Divide and Conquer** paradigm is a fundamental algorithm design pattern. It works by recursively breaking down a problem into two or more sub-problems of the same or related type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem.
+---
 
-It consists of three main steps:
+### 1. Recursion & Backtracking
+
+Recursion is a process where a function calls itself directly or indirectly to solve a smaller instance of the same problem.
+
+#### Key Concepts:
+*   **Base Case / Base Call:** The terminating condition that stops the recursion. Without a proper base case, the function calls itself indefinitely, leading to a stack overflow error.
+*   **Recursion Flow (Call Stack):** Every recursive call adds a new frame to the call stack containing its parameters and local variables. Once the base case is reached, the stack begins to unwind (pop frames).
+*   **Backtracking Recursion:** A technique where we search for a solution by doing work **after** the recursive call returns (during stack unwinding). For example:
+    *   *Normal printing (1 to N):* Print the number, then make the recursive call.
+    *   *Backtracking printing (1 to N):* Call the function recursively with `c-1`, and **then** print `c` after the recursive call returns. This prints in ascending order even when traversing downwards.
+*   **Multiple Recursive Calls:** When a function calls itself more than once in a single execution path (e.g., Fibonacci numbers where $F(N) = F(N-1) + F(N-2)$).
+
+#### Fibonacci Stack Unwinding Trace ($F(4)$):
+```
+                       F(4)
+                     /      \
+                 F(3)        F(2)
+                /    \      /    \
+             F(2)   F(1)  F(1)   F(0)
+            /    \
+         F(1)   F(0)
+```
+*   Each node returns its value up to its parent once the base cases ($F(1) = 1, F(0) = 0$) are resolved.
+
+---
+
+### 2. Hashing & Maps
+
+Hashing is a technique used to uniquely identify objects and store/retrieve them in constant time.
+
+#### Precomputation vs. Fetching:
+*   **Precomputation:** Processing the input data once to build a lookup structure (e.g. counting frequencies).
+*   **Fetching:** Querying the lookup structure in $\mathcal{O}(1)$ or $\mathcal{O}(\log N)$ time.
+
+#### Hashing Types:
+1. **Number Hashing:** Using a direct index array where the index matches the number, and the value stores its frequency.
+2. **Character & String Hashing:** Using ASCII manipulation to fit characters into a small array. For lowercase English letters (`'a'` to `'z'`), we subtract `'a'` (e.g., `index = ch - 'a'`) to map them to indexes `0` to `25`.
+3. **Map vs. Unordered Map (`std::map` vs `std::unordered_map`):**
+
+| Feature | `std::map` | `std::unordered_map` |
+| :--- | :--- | :--- |
+| **Internal Structure** | Self-balancing BST (Red-Black Tree) | Hash Table (Bucket array) |
+| **Time Complexity (Search)** | $\mathcal{O}(\log N)$ (Always) | $\mathcal{O}(1)$ average, $\mathcal{O}(N)$ worst |
+| **Element Order** | Sorted by key | Unsorted / Random |
+| **Keys Allowed** | Any comparable type (needs `<` operator) | Only hashable types |
+
+---
+
+### 3. Divide & Conquer Paradigm
+The **Divide and Conquer** paradigm is a fundamental algorithm design pattern:
 1. **Divide:** Split the problem into smaller, independent sub-problems.
 2. **Conquer:** Solve the sub-problems recursively. If they are small enough (base case), solve them directly.
 3. **Combine:** Merge the solutions of the sub-problems to form the final solution to the original problem.
 
 ---
 
-### 2. Merge Sort
-**Merge Sort** is a classic sorting algorithm that uses the **Divide & Conquer** paradigm. It is a stable, comparison-based sorting algorithm.
+### 4. Sorting Algorithms
 
-#### How It Works:
-1. **Divide:** Find the midpoint of the array, `mid = (low + high) / 2`, and split the array into two halves.
-2. **Conquer:** Recursively sort both halves using Merge Sort.
-3. **Combine:** Merge the two sorted halves back into a single sorted array.
+#### Selection Sort
+*   **Concept:** Divide the array into sorted and unsorted parts. Repeatedly find the minimum element in the unsorted part and swap it with the first element of that part.
+*   **Complexity:** Time: $\mathcal{O}(N^2)$ (all cases) | Space: $\mathcal{O}(1)$
 
-```
-       [4, 3, 2, 5, 1]          <- Unsorted Array
-         /          \
-     [4, 3]        [2, 5, 1]    <- Divide (Split)
-     /    \        /       \
-   [4]    [3]    [2]     [5, 1]
-                          /   \
-                        [5]   [1]
-    \      /      |       \   /
-     [3, 4]      [2]      [1, 5]
-       \          \        /
-     [3, 4]         [1, 2, 5]   <- Conquer (Merge Sorted Sub-arrays)
-         \          /
-       [1, 2, 3, 4, 5]          <- Fully Sorted Array
-```
+#### Bubble Sort
+*   **Concept:** Repeatedly step through the list, compare adjacent elements, and swap them if they are in the wrong order.
+*   **Complexity:** Time: $\mathcal{O}(N^2)$ worst/avg, $\mathcal{O}(N)$ best (if optimized with swap flag) | Space: $\mathcal{O}(1)$
 
-#### Complexity Analysis:
-*   **Time Complexity:**
-    *   **Best Case:** $\mathcal{O}(N \log N)$
-    *   **Average Case:** $\mathcal{O}(N \log N)$
-    *   **Worst Case:** $\mathcal{O}(N \log N)$
-*   **Space Complexity:** $\mathcal{O}(N)$ (Auxiliary space for the temporary merging array/vector).
+#### Insertion Sort
+*   **Concept:** Build the sorted array one item at a time by inserting each new element into its proper position relative to already-sorted elements.
+*   **Complexity:** Time: $\mathcal{O}(N^2)$ worst/avg, $\mathcal{O}(N)$ best | Space: $\mathcal{O}(1)$
 
----
+#### Merge Sort
+*   **Concept:** A Divide & Conquer algorithm. Divide the array into halves, sort them recursively, and merge the sorted halves.
+*   **Complexity:** Time: $\mathcal{O}(N \log N)$ (all cases) | Space: $\mathcal{O}(N)$ (requires auxiliary space for merging)
 
-### 3. Selection Sort
-**Selection Sort** is a simple comparison-based sorting algorithm. It divides the input list into two parts: the sublist of items already sorted, and the sublist of items remaining to be sorted.
-
-#### How It Works:
-1. Start with the first element of the unsorted part.
-2. Search through the unsorted array to find the minimum value.
-3. Swap this minimum value with the first element of the unsorted part.
-4. Move the boundary between the sorted and unsorted parts one element to the right.
-5. Repeat until the entire array is sorted.
-
-#### Complexity Analysis:
-*   **Time Complexity:**
-    *   **Best Case:** $\mathcal{O}(N^2)$ (Still scans the unsorted part)
-    *   **Average Case:** $\mathcal{O}(N^2)$
-    *   **Worst Case:** $\mathcal{O}(N^2)$
-*   **Space Complexity:** $\mathcal{O}(1)$ (In-place sorting).
-
----
-
-### 4. Bubble Sort
-**Bubble Sort** is a straightforward sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.
-
-#### How It Works:
-1. Compare adjacent elements (e.g., index `i` and `i+1`).
-2. If `arr[i] > arr[i+1]`, swap them.
-3. Repeat this process for all elements. After the first pass, the largest element "bubbles up" to its correct position at the end.
-4. Perform $N-1$ passes to fully sort the array.
-
-#### Complexity Analysis:
-*   **Time Complexity:**
-    *   **Best Case:** $\mathcal{O}(N)$ (With an optimized version that stops if no swaps occurred)
-    *   **Average Case:** $\mathcal{O}(N^2)$
-    *   **Worst Case:** $\mathcal{O}(N^2)$
-*   **Space Complexity:** $\mathcal{O}(1)$ (In-place sorting).
-
----
-
-### 5. Insertion Sort
-**Insertion Sort** works similarly to the way you sort playing cards in your hands. The array is virtually split into a sorted and an unsorted part.
-
-#### How It Works:
-1. Assume the first element is already sorted.
-2. Take the next element from the unsorted part and compare it with elements in the sorted part (moving backwards).
-3. Shift all elements in the sorted part that are larger than the key element to the right.
-4. Insert the key element at its correct position.
-5. Repeat for all elements.
-
-#### Complexity Analysis:
-*   **Time Complexity:**
-    *   **Best Case:** $\mathcal{O}(N)$ (Array is already sorted; no shifts needed)
-    *   **Average Case:** $\mathcal{O}(N^2)$
-    *   **Worst Case:** $\mathcal{O}(N^2)$
-*   **Space Complexity:** $\mathcal{O}(1)$ (In-place sorting).
-
----
-
-### 6. Two-Pointer Technique (In-Depth)
-The **Two-Pointer Technique** is an extremely efficient search/traversal pattern that uses two reference pointers (typically indices) to traverse a data structure (usually an array or linked list) in a coordinated manner. 
-
-#### Common Patterns:
-1. **Opposite Directions (Left/Right Pointer):**
-   *   Used on sorted arrays.
-   *   One pointer starts at the beginning (`left = 0`) and the other at the end (`right = size - 1`).
-   *   They move toward each other based on condition checks (e.g., Two Sum on a sorted array, reversing an array, checking for palindromes).
-2. **Same Direction (Fast/Slow Pointer / Sliding Window):**
-   *   Used for finding cycles (e.g., Floyd's Cycle Detection) or processing contiguous subarrays.
-
-#### Application Example (Two Sum on Sorted Array):
-To find if two elements sum to a `target`:
-*   If `arr[left] + arr[right] == target`, return the values.
-*   If `arr[left] + arr[right] > target`, we need a smaller sum, so decrement `right` (`right--`).
-*   If `arr[left] + arr[right] < target`, we need a larger sum, so increment `left` (`left++`).
-
----
-
-## 📊 Summary of Sorting Algorithms
-
-| Algorithm | Best Time Complexity | Average Time Complexity | Worst Time Complexity | Space Complexity | Stable? |
+#### Summary Table:
+| Algorithm | Best Time | Average Time | Worst Time | Space Complexity | Stable? |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Selection Sort** | $\mathcal{O}(N^2)$ | $\mathcal{O}(N^2)$ | $\mathcal{O}(N^2)$ | $\mathcal{O}(1)$ | No |
-| **Bubble Sort** | $\mathcal{O}(N)$ (Optimized) | $\mathcal{O}(N^2)$ | $\mathcal{O}(N^2)$ | $\mathcal{O}(1)$ | Yes |
+| **Bubble Sort** | $\mathcal{O}(N)$ | $\mathcal{O}(N^2)$ | $\mathcal{O}(N^2)$ | $\mathcal{O}(1)$ | Yes |
 | **Insertion Sort** | $\mathcal{O}(N)$ | $\mathcal{O}(N^2)$ | $\mathcal{O}(N^2)$ | $\mathcal{O}(1)$ | Yes |
 | **Merge Sort** | $\mathcal{O}(N \log N)$ | $\mathcal{O}(N \log N)$ | $\mathcal{O}(N \log N)$ | $\mathcal{O}(N)$ | Yes |
 
 ---
 
+### 5. Two-Pointer Technique (In-Depth)
+The **Two-Pointer Technique** uses two indices to traverse an array or list synchronously.
+
+#### Patterns:
+1. **Opposite Directions (Left/Right Pointer):**
+   *   Used on sorted arrays.
+   *   One pointer starts at the beginning (`left = 0`) and the other at the end (`right = size - 1`).
+   *   They move toward each other based on condition checks.
+   *   *Examples:* Two Sum on sorted array (`arr[left] + arr[right] == target`), array reversal.
+2. **Same Direction (Fast/Slow Pointer / Sliding Window):**
+   *   One pointer moves faster than the other, or both define a sliding window boundary.
+   *   *Examples:* Cycle detection, maximum sum subarray of size K.
+
+---
+
 ## 📌 Repository File Mapping
 
-*   **Recursion:** (`L9recursion.cpp`)
+*   **Recursion & Backtracking:** (`L9recursion.cpp`)
 *   **Hashing & Maps:** (`L10hashing.cpp`, `c.cpp`)
 *   **Arrays & Basics:** (`L6array.cpp`, `L1,L2.cpp`, `L3.cpp`, etc.)
 *   **Sorting Algorithms:** (`L11sorting.cpp`) - Includes Selection, Insertion, Bubble, and Merge Sort.
@@ -149,4 +121,3 @@ To find if two elements sum to a `target`:
 
 ---
 *Happy Coding!* 😊
-
