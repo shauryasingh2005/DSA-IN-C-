@@ -1,4 +1,21 @@
-#include<iostream>/*this is PREPROCESSOR DIRECTIVE isse likhna always imp*/
+#include<iostream>
+/*this is PREPROCESSOR DIRECTIVE isse likhna always imp*/
+#include <vector>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+#include <map>
+#include <set>
+#include <queue>          // queue and priority_queue
+#include <stack>
+#include <deque>
+#include <algorithm>      // sort, lower_bound, reverse, etc.
+#include <climits>        // INT_MAX, INT_MIN, LLONG_MAX
+#include <numeric>        // accumulate, iota, gcd
+#include <functional>     // greater<>, function<>
+#include <sstream>        // stringstream for parsing
+#include <cmath>          // sqrt, abs, pow, ceil, floor
+
 using namespace std;/*this is s*/
 int main(){
 

@@ -1,58 +1,30 @@
-// MAPPING
-#include <iostream>
-#include <map>/*requred for using maps*/
+#include<iostream>
 using namespace std;
-int main() {
-  int n;
-  cin >> n;
-  int arr[n];
-  for (int i = 0; i < n; i++) {
-    cin >> arr[i];
-  }
-  map<int, int> mpp; /*declaraction ;map<number,frequency>mapname*/
-  for (int i = 0; i < n; i++) {
-    mpp[arr[i]]++;
-  }
-  int q;
-  cin >> q;
-  while (q--) {
-    int key;
-    cin >> key;
-    cout << mpp[key] << endl; /*fetching the frequency of key from map*/
-  }
+int sort(int arr[5],int si){
+  int min=si;
+  for(int i=si;i<5;i++){if(arr[i]<arr[min]){min=i;}}
+  int temp=arr[min];
+  arr[min]=arr[si];
+  arr[si]=temp;
 }
 
-/*
- * ======================================================================================
- * PRE-COMPUTATION LOGIC: Building the Frequency Map (The "Notebook")
- * ======================================================================================
- * We are using 'mpp' as a frequency counter to store occurrences of each
- * number. The operation 'mpp[arr[i]]++' performs two distinct logical steps in
- * one go:
- *
- * 1. THE SEARCH:
- * The '[]' operator looks for the current array number (arr[i]) in our map.
- * - If the number IS NOT in the map:
- * The map automatically creates a new row (a key-value pair) for it.
- * It initializes the frequency (value) to 0, then immediately applies the '++'.
- * - If the number IS ALREADY in the map:
- * The map fetches the existing frequency value stored at that key.
- *
- * 2. THE INCREMENT:
- * The '++' operator takes the value fetched (either the default 0 or the
- * existing tally) and increases it by 1.
- *
- * STEP-BY-STEP TRACE (Example: [1, 2, 3, 1, 3, 2, 12]):
- * --------------------------------------------------------------------------------------
- * i=0, arr[0]=1  | mpp[1]++ | 1 is new. Create row 1, set to 0, increment to 1.
- * i=1, arr[1]=2  | mpp[2]++ | 2 is new. Create row 2, set to 0, increment to 1.
- * i=2, arr[2]=3  | mpp[3]++ | 3 is new. Create row 3, set to 0, increment to 1.
- * i=3, arr[3]=1  | mpp[1]++ | 1 exists. Fetch 1, increment to 2.
- * i=4, arr[4]=3  | mpp[3]++ | 3 exists. Fetch 1, increment to 2.
- * i=5, arr[5]=2  | mpp[2]++ | 2 exists. Fetch 1, increment to 2.
- * i=6, arr[6]=12 | mpp[12]++| 12 is new. Create row 12, set to 0, increment
- * to 1.
- * --------------------------------------------------------------------------------------
- * Result: {1: 2, 2: 2, 3: 2, 12: 1}
- * ======================================================================================
- */
+int main(){
+   int arr[5]={13,24,52,20,9};
+   int target;
+   cin>>target;
+   int q=5;
+   int si=0;
+while(q--) { sort(arr,si);
+si++;}
+for(int i=0;i<5;i++){cout<<arr[i]<<" "<<endl;}
+
+int i=0,j=4;
+while(i<j){
+  if(arr[i]+arr[j]==target){cout<<arr[i]<<"+"<<arr[j];
+  return 0;}
+
+if(arr[i]+arr[j]>target){j--;}
+else{i++;}
+}
+return -1;
+}
