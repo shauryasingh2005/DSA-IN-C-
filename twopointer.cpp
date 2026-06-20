@@ -87,3 +87,33 @@ int main() {
   int l = 2, r = 0;
   rev(r, l,n);
    for(int i=0;i<=2;i++){cout<<n[i];}}
+
+
+
+
+
+
+   //FIND DUPLICATES IN AN ARRAY
+   #include<iostream>
+using namespace std;
+int main(){
+    int arr[8]={1,1,1,2,2,3,3,3};
+    int o=0;
+     int co=o;
+      int si=0;
+    while(o<=2){
+        cout<<arr[o];
+       
+      int co=si;
+        while(co<=7){
+             co++;
+
+            if(arr[co]!=arr[o]){o++;
+                si=co;
+            arr[o]=arr[co];
+            
+        break;}
+        else{continue;}
+    }}
+       
+}
