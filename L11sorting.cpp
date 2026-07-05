@@ -1,27 +1,33 @@
 //SELECTION SORT_______traverse unsroted arry and find the minimum element and swap it with the first element of unsorted array and repeat the process for remaining unsorted array
 
-#include <iostream>
+#include<iostream>
 using namespace std;
-   
-int ssort(int unsor[],int si){
-  int mindex=si;
-  
-  for(int i=si;i<5;i++){if(unsor[i]<unsor[mindex]){mindex=i;}}
-    int temp=unsor[mindex];
-    unsor[mindex]=unsor[si];
-    unsor[si]=temp;
-  
-}
-int main() {
-  int unsor[5]={13,24,52,20,9};
-  int si = 0;
-while(si<5){
-ssort(unsor,si);
-si++;
+/*finding min elemnt*/
+int min(int arr[],int si){/*si:starting index*/
+int temp;
+    int mini=si;
+    for(int i=si;i<5;i++){
+        if(arr[mini]>arr[i]){
+mini=i;
+        }
+    }
+    /*swap*/
+    temp=arr[si];
+arr[si]=arr[mini];
+arr[mini]=temp;
+    
 }
 
-cout<<"sorted array is\n";
-for(int i=0;i<5;i++){cout<<unsor[i]<<" ";}
+
+int main(){
+    int arr[5]={5,4,3,10,6};
+    int si=0;
+    int q=5;
+ while(q--){min(arr,si);
+ si++;
+}
+
+ for(int i=0;i<5;i++){cout<<arr[i];}   
 }
 
 

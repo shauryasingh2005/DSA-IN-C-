@@ -108,6 +108,38 @@ The **Two-Pointer Technique** uses two indices to traverse an array or list sync
 2. **Same Direction (Fast/Slow Pointer / Sliding Window):**
    *   One pointer moves faster than the other, or both define a sliding window boundary.
    *   *Examples:* Cycle detection, maximum sum subarray of size K.
+3. **Three-Pointer / Partitioning (Dutch National Flag Algorithm):**
+   *   Used to sort elements into three distinct groups (e.g., `0`s, `1`s, and `2`s) in a single pass.
+   *   Three pointers (`low`, `mid`, `high`) partition the array such that all elements before `low` are `0`, elements from `low` to `mid-1` are `1`, and elements after `high` are `2`.
+
+---
+
+### 6. Multi-Pointer / 3Sum Problems
+
+#### 3Sum (Unique Triplets summing to 0)
+*   **Concept:** Find all unique triplets `[nums[i], nums[j], nums[k]]` such that `nums[i] + nums[j] + nums[k] == 0`.
+*   **Approach:** Sort the array. Iterate through fixing the first element `nums[i]`. For each fixed element, use two pointers (`l = i+1` and `r = n-1`) to find pairs that sum to `-nums[i]`. Skip duplicate values for `nums[i]`, `nums[l]`, and `nums[r]` to avoid duplicates.
+*   **Complexity:** Time: $\mathcal{O}(N^2)$ | Space: $\mathcal{O}(1)$ or $\mathcal{O}(N)$ depending on sorting.
+
+#### 3Sum Closest
+*   **Concept:** Find three integers in `nums` such that their sum is closest to `target`.
+*   **Approach:** Sort the array. Iterate fixing the first element `nums[i]`, and use two pointers (`l = i+1` and `r = n-1`). Track the sum that minimizes `|sum - target|`. Move pointers closer depending on whether the current sum is less than or greater than `target`.
+*   **Complexity:** Time: $\mathcal{O}(N^2)$ | Space: $\mathcal{O}(1)$
+
+#### 3Sum Smallest
+*   **Concept:** Find the number of index triplets `i, j, k` with `0 <= i < j < k < n` satisfying `nums[i] + nums[j] + nums[k] < target`.
+*   **Approach:** Sort the array. Fix the first element `nums[i]`. With two pointers `l = i+1` and `r = n-1`, if `nums[i] + nums[l] + nums[r] < target`, then any triplet with third index from `l+1` to `r` is also valid (since array is sorted). Add `r - l` to the count and increment `l`. Otherwise, decrement `r`.
+*   **Complexity:** Time: $\mathcal{O}(N^2)$ | Space: $\mathcal{O}(1)$
+
+---
+
+### 7. Sorting Colors (Dutch National Flag Algorithm)
+*   **2-Pass Counting Sort:** Scan the array once to count the number of `0`s, `1`s, and `2`s, then write them back sequentially.
+*   **1-Pass DNF Pointer Algorithm:** Maintain three pointers `low = 0`, `mid = 0`, and `high = n-1`.
+    *   If `nums[mid] == 0`: Swap `nums[low]` and `nums[mid]`, increment both `low` and `mid`.
+    *   If `nums[mid] == 1`: Increment `mid`.
+    *   If `nums[mid] == 2`: Swap `nums[mid]` and `nums[high]`, decrement `high` (do not increment `mid` as the swapped value needs to be processed).
+*   **Complexity:** Time: $\mathcal{O}(N)$ in a single pass | Space: $\mathcal{O}(1)$
 
 ---
 
@@ -117,7 +149,8 @@ The **Two-Pointer Technique** uses two indices to traverse an array or list sync
 *   **Hashing & Maps:** (`L10hashing.cpp`, `c.cpp`)
 *   **Arrays & Basics:** (`L6array.cpp`, `L1,L2.cpp`, `L3.cpp`, etc.)
 *   **Sorting Algorithms:** (`L11sorting.cpp`) - Includes Selection, Insertion, Bubble, and Merge Sort.
-*   **Two-Pointer & Array Reversal:** (`twopointer.cpp`) - Includes array summation, sorted Two Sum, and array reversal.
+*   **Two-Pointer & Multi-Pointer (3Sum, Closest, Smallest, DNF, Sort Colors):** (`twopointer.cpp`, `LEETCODE.cpp`)
+*   **Basic Counting Sort / Colors:** (`c.cpp`)
 
 ---
 *Happy Coding!* 😊
