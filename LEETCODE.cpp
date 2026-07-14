@@ -19,6 +19,7 @@ class SolutionReverse {
 
 
 
+
 /*Given an integer n, return true if it is a power of two. Otherwise, return false.
 
 An integer n is a power of two, if there exists an integer x such that n == 2x.*/
@@ -209,7 +210,7 @@ cout<<endl<<"min sum"<<aja[min];
 
 
 
-//SORTING COLORS WITHOUT ACTYUALLY SORTING
+//SORTING COLORS WITHOUT ACTYUALLY SORTING PART 1(DOUBLE PASS)
 #include <vector>
 using namespace std;
 
@@ -249,3 +250,98 @@ public:
 };
 
 
+//SORITNG COLORS PART 2 (SINGLE PASS)DUTCH NATIONAL FLAG ALGORITHM (ON PHONE IN NOTES)
+
+#include<iostream>
+using namespace std;
+
+
+
+int main(){
+  int n=9;
+  int a[n]={2,0,2,1,2,0,1,2,1};
+  int low=0,mid=0;
+  int high=n-1;
+  while(mid<=high){
+if(a[mid]==2){swap(a[mid],a[high]);
+high--;}
+
+else if(a[mid]==0){swap(a[mid],a[low]);
+low++;
+mid++;}
+
+else{mid++;} 
+  }  
+  for (int i = 0; i < n; i++) {
+    cout << a[i] << " ";
+}
+cout << endl;}
+
+
+
+
+//PALINDROME NUMBER CHECK WITHOUT STIRNG
+#include<iostream>
+using namespace std;
+int main(){
+  int num;
+  cout<<"enter";
+  cin>>num;
+  int i=0;
+  int ori=num;
+  int count =0;
+  while(ori>0){
+    count++;
+    ori=ori/10;
+   
+  }
+
+ 
+int nm=num;
+int rem=0;
+long nnm=0;
+int arr[count];
+while(nm>0){
+  rem=nm%10;
+  nnm=nnm*10+rem;
+  
+nm=nm/10;
+}
+
+if(nnm==num){cout<<"yes";}
+else{cout<<"no";}
+
+}
+
+
+
+
+
+
+//SMALLEST SUBARRAY WHICH HAS SUM EQUAL TO OR GREATER THAN TARGET
+#include<iostream>
+#include<climits>
+using namespace std;
+int main(){
+int l=0,h=0;
+int n=5;
+int ar[n]={1,2,4,4,5};
+int sum=0;
+int min=INT_MAX;
+int trg;
+cout<<"enter trg";
+cin>>trg;
+while(h<n)
+{
+    sum=sum+ar[h];
+    while(sum>=trg){
+        int len=h-l+1;
+        if(len<min)/*basically int max is infinity so anyhting len give will b e smaller that infinity*/
+        {min=len;}
+        sum=sum-ar[l];
+        l++;
+    }
+    h++;
+}
+
+}
