@@ -1,28 +1,34 @@
+//FRUITS INTO BASKET{Longes tsubarray which has atmost 2 baskets for max numbe rof fruits,mtlb 1 ya 2 baskets possible h}
+
 #include<iostream>
 #include<unordered_map>
 #include<climits>
-using namespace std; // <-- ADD THIS LINE
-
+using namespace std;
 int main(){
-    char s[8] ="ecedcae";/*ik yha pr 7 letters h but sitll 8 ka size dikha rha as ek /0 value hoti h*/
-    unordered_map<char,int> f;
-    int k; cout<<"enter k"; cin>>k;
-int h=0,l=0;
-
 int max=INT_MIN;
-    for(int h=0;h<7;h++){
+int arr[5]={1,2,1,3,2};
+int k=2;/*as quesiton mein we have 2 baskets only*/
+int h=0,l=0;
+unordered_map<int,int>f;
+while(h<5){
+    f[arr[h]]++;
+    while(f.size()>k){
+        f[arr[l]]--;
+        if(f[arr[l]]==0){f.erase(arr[l]);}
+        l++;
+    }
 
-f[s[h]]++;//what its doing is h:1(frequency),e;1,c;1 till now f.size is 3 let say k=3 then it count a;1,now f.zie =4 enters while(f.zie>k)loop
+/*MISTKAE    if(f.size()==k){  this would not be needed as exactly 2 nahi 2 ya 2 s ekm baskets me cover ho jaaye*/
+int len=h-l+1;
+if(len>max){max=len;}
 
-while(f.size()>k){f[s[l]]--;
-if(f[s[l]]==0){f.erase(s[l]);}//window hits for k=3 heca then erases h and then ecae but f.size is still =k then ecaef ,now size>k hence erase e then caef ,size greater erase c and htis continues
 
-l++;}
+h++;}
 
-if(f.size()==k){
-    int len=h-l+1;
-    if(len>max){
-        max=len;}} }
 
-        cout<<max;
+
+cout<<max;
+
+
+
 }
