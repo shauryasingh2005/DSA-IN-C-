@@ -141,6 +141,13 @@ The **Two-Pointer Technique** uses two indices to traverse an array or list sync
     *   If `nums[mid] == 2`: Swap `nums[mid]` and `nums[high]`, decrement `high` (do not increment `mid` as the swapped value needs to be processed).
 *   **Complexity:** Time: $\mathcal{O}(N)$ in a single pass | Space: $\mathcal{O}(1)$
 
+### 8. Sliding Window (Started)
+
+The **Sliding Window** technique is used to perform operations on a specific window size of a given array or buffer. It is highly efficient for converting nested loops into a single loop, reducing time complexity from $\mathcal{O}(N^2)$ to $\mathcal{O}(N)$.
+
+*   **Fixed Size Window:** The window size remains constant (e.g., Maximum Sum in Subarray of Length K).
+*   **Variable Size Window:** The window size expands or shrinks dynamically based on conditions (e.g., Smallest Subarray Greater Than or Equal to Sum).
+
 ---
 
 ## 📌 Repository File Mapping
@@ -151,6 +158,7 @@ The **Two-Pointer Technique** uses two indices to traverse an array or list sync
 *   **Sorting Algorithms:** (`L11sorting.cpp`) - Includes Selection, Insertion, Bubble, and Merge Sort.
 *   **Two-Pointer & Multi-Pointer (3Sum, Closest, Smallest, DNF, Sort Colors):** (`twopointer.cpp`, `LEETCODE.cpp`)
 *   **Basic Counting Sort / Colors:** (`c.cpp`)
+*   **Sliding Window:** (`slidingwindow.cpp`) - Started sliding window concepts (Fixed/Variable size).
 
 ---
 *Happy Coding!* 😊
