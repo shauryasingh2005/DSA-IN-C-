@@ -1,26 +1,25 @@
+//MOVE ZEROES AT LAST WITHOUT FUCKING UP THE ORDER 
+
 #include<iostream>
-#include<climits>
-#include<unordered_map>
 using namespace std;
-int main(){
 
-string s = "bbbbb";
-int l=0,h=0;
-int max=INT_MIN;
-unordered_map<char,int>f;
-while(h<5){
-f[s[h]]++;
-
-while(f.size()<(h-l+1)){
-    f[s[l]]--;
-    if(f[s[l]]==0){f.erase(s[l]);}
-    l++;}
-
-    if(f.size()==(h-l+1)){
-        if((h-l+1)>max){max=(h-l+1);}
+int main() {
+    int arr[5] = {0, 1, 0, 3, 12};
+    int l = 0, h = 0;
+    
+    while(h < 5) {
+        // The Reader only cares if it found a non-zero!
+        if(arr[h] != 0) {
+            // Swap them. (You can also just use the built-in C++ swap)
+            swap(arr[l], arr[h]);
+            
+            // Writer moves forward, ready for the next non-zero
+            l++;
+        }
+        h++; // Reader always moves forward
     }
-h++;
 
-}
-cout<<max;
+    for(int i = 0; i < 5; i++) {
+        cout << arr[i] << " ";
+    }
 }
