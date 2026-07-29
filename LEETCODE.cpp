@@ -484,3 +484,44 @@ int main() {
         cout << arr[i] << " ";
     }
 }
+
+
+
+
+
+//SQUARES OF SORTED ARRAY
+#include<iostream>
+using namespace std;
+
+int main(){
+    int n=5;
+int orgn=n;
+    int arr[n]={-4,-3,1,2,5};
+//squaring
+for(int i=0;i<n;i++){
+arr[i]=arr[i]*arr[i];
+}
+
+int arr2[n]={0};
+
+int l=0,h=n-1;
+while(n>=0){
+if(arr[l]<arr[h]){
+    n--;
+arr2[n]=arr[h];
+h--;
+
+}
+
+else{
+    n--;
+    arr2[n]=arr[l];
+l++;}
+
+}
+
+
+
+for(int i=0;i<orgn;i++){cout<<arr2[i]<<" ";}
+
+}
