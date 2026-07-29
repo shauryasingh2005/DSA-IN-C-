@@ -118,6 +118,32 @@ int main(){
        
 }
 
+//RMEOVE DUPLICATES IN SORTD ARRAY(BETTER TIME COMPLEXITY as one loop used)
+#include<iostream>
+using namespace std;
+
+int main(){
+int count=1;
+int arr[5]={0,1,2,2,2};
+int h=0;
+arr[h]=arr[0];
+
+
+
+for(int l=1;l<5;l++){
+
+if(arr[h]!=arr[l]){h++;
+    arr[h]=arr[l];
+count++;}
+}
+for(int h=0;h<count;h++){
+cout<<arr[h];}
+}
+
+
+
+
+
 
 
 
@@ -178,6 +204,54 @@ while(r<ps){
 for(int i=0;i<5;i++){
     cout<<res[i];
 }}
+
+
+
+
+
+
+
+
+//SUM OF SQUARES EASIER METHOD
+#include<iostream>
+using namespace std;
+
+int main(){
+    int n=5;
+int orgn=n;
+    int arr[n]={-4,-3,1,2,5};
+//squaring
+for(int i=0;i<n;i++){
+arr[i]=arr[i]*arr[i];
+}
+
+int arr2[n]={0};
+
+int l=0,h=n-1;
+while(n>=0){
+if(arr[l]<arr[h]){
+    n--;
+arr2[n]=arr[h];
+h--;
+
+}
+
+else{
+    n--;
+    arr2[n]=arr[l];
+l++;}
+
+}
+
+
+
+for(int i=0;i<orgn;i++){cout<<arr2[i]<<" ";}
+
+}
+
+
+
+
 
 
 
