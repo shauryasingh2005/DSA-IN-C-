@@ -438,7 +438,7 @@ string s = "abcbad";
 int l=0,h=0;
 int max=INT_MIN;
 unordered_map<char,int>f;
-while(h<5){
+while(h<5){   
 f[s[h]]++;
 
 while(f.size()<(h-l+1)){
@@ -524,4 +524,4 @@ l++;}
 
 for(int i=0;i<orgn;i++){cout<<arr2[i]<<" ";}
 
-}
+}
