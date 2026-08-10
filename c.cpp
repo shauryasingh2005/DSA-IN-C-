@@ -1,26 +1,32 @@
 #include<iostream>
-#include<climits>
 using namespace std;
 int main(){
+    int n=8;
 
-int arr[6]={1, 2, 3, 4, 5, 6};
-int k=6;
+    int l=0;
+    int trg=4;
+    int gtl=0;
+    
+    int arr[n]={-5,-2,-2,0,0,1,2,7};
+for(int i=0;i<=n-3;i++){
+   
+for(int j=i+1;j<=n-2;j++){
+    int l=j+1;
+    int h=n-1;
+    int otrg=arr[i]+arr[j];
 
-int sum=0;
+while(l<h){
+    int tans=arr[l]+arr[h];
+    if(tans+otrg==trg){
+cout<<arr[l]<<arr[h]<<arr[i]<<arr[j]<<" ";
+    l++;h--;}
 
+    if(tans+otrg<trg){l++;}
+     if(tans+otrg>trg){h--;}
+}
 
-int min=INT_MAX;
-int l=0,h=0;
-while(h<6){
-    sum=sum+arr[h];
-if(sum>=k){
-    int len=h-l+1;
-if(len<min){min=len;}
-l++;
-cout<<min<<" ";}
-
-if(sum<k){
-    h++;
-}}
+}
+    
+}
 
 }
