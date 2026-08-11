@@ -564,3 +564,42 @@ cout<<arr[l]<<arr[h]<<arr[i]<<arr[j]<<" ";
 }
 
 }
+
+
+// LONGEST REPEATING CHARACTER REPLACEMENT (LeetCode 424)
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+
+using namespace std;
+
+class SolutionLongestRepeatingReplacement {
+public:
+    int characterReplacement(string s, int k) {
+        vector<int> count(26, 0);
+        int maxCount = 0;
+        int maxLength = 0;
+        int l = 0;
+        
+        for (int h = 0; h < s.length(); h++) {
+            count[s[h] - 'A']++;
+            maxCount = max(maxCount, count[s[h] - 'A']);
+            
+            while ((h - l + 1) - maxCount > k) {
+                count[s[l] - 'A']--;
+                l++;
+            }
+            maxLength = max(maxLength, h - l + 1);
+        }
+        return maxLength;
+    }
+};
+
+int main_character_replacement() {
+    SolutionLongestRepeatingReplacement solver;
+    string s = "AABABBA";
+    int k = 1;
+    cout << "Longest Repeating Character Replacement for " << s << " with k=" << k << " is: " << solver.characterReplacement(s, k) << endl;
+    return 0;
+}
